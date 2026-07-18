@@ -1,0 +1,10 @@
+POST http://localhost:3000/questions
+Content-Type: application/json
+
+{
+  "title": "fibonacchi",
+  "slug": "fibonacchi-sequence",
+  "description": "find 10th fibonacchi number",
+  "difficulty": "easy",
+  "timeLimit": 10
+}
