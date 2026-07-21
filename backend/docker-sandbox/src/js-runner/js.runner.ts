@@ -11,7 +11,7 @@ interface ExecuteResult {
   timedOut: boolean;
 }
 
-const executeInContainer = async (container: Docker.Container, cmd: string[], timeoutMs: number): Promise<ExecuteResult> {
+const executeInContainer = async (container: Docker.Container, cmd: string[], timeoutMs: number): Promise<ExecuteResult> => {
   const exec = await container.exec({
     Cmd: cmd,
     AttachStdout: true,

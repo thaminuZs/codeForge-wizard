@@ -11,7 +11,7 @@ interface ExecuteResult {
   timedOut: boolean;
 }
 
-const executeInContainer = async (container: Docker.Container, cmd: string[], timeoutMs: number): Promise<ExecuteResult> {
+const executeInContainer = async (container: Docker.Container, cmd: string[], timeoutMs: number): Promise<ExecuteResult> => {
   const exec = await container.exec({
     Cmd: cmd,
     AttachStdout: true,
@@ -103,8 +103,8 @@ export const runJavaCode = async (
     compileTimeoutMs
   );
 
-  if (compileResult.timedOut) return { stage: 'compile', success: false, timedOut: true, ...compileResult };
-  if (compileResult.exitCode !== 0) return { stage: 'compile', success: false, timedOut: false, ...compileResult };
+  if (compileResult.timedOut) return { ...compileResult, stage: 'compile', success: false, timedOut: true };
+  if (compileResult.exitCode !== 0) return { ...compileResult, stage: 'compile', success: false, timedOut: false };
 
   const runResult = await executeInContainer(
     container,
@@ -112,8 +112,8 @@ export const runJavaCode = async (
     runTimeoutMs
   );
 
-  if (runResult.timedOut) return { stage: 'run', success: 'false', timedOut: true, ...runResult };
-  if (runResult.exitCode !== 0) return { stage: 'run', success: 'false', timedOut: false, ...runResult };
+  if (runResult.timedOut) return { ...runResult, stage: 'run', success: false, timedOut: true };
+  if (runResult.exitCode !== 0) return { ...runResult, stage: 'run', success: false, timedOut: false };
 
-  return { stage: 'run', success: 'true', timedOut: false, ...runResult };
+  return { ...runResult, stage: 'run', success: 'true', timedOut: false };
 }
