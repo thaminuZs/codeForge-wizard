@@ -103,11 +103,11 @@ export const runJSCode = async (
   );
 
   if (runResult.timedOut) {
-    return { stage: 'run', success: false, timedOut: true, ...runResult };
+    return { ...runResult, stage: 'run', success: false, timedOut: true };
   }
   if (runResult.exitCode !== 0) {
-    return { stage: 'run', success: false, timedOut: false, ...runResult };
+    return { ...runResult, stage: 'run', success: false, timedOut: false };
   }
 
-  return { stage: 'run', success: true, timedOut: false, ...runResult };
+  return { ...runResult, stage: 'run', success: true, timedOut: false };
 }
