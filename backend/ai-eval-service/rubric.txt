@@ -1,0 +1,6 @@
+Judge this competitive programming solution out of 50. Award partial credit — a single bug should not zero out categories unrelated to it.
+
+Weights: Correctness/test cases: 25 | Time/space complexity: 12 | Edge case handling: 8 | Code clarity: 3 | Approach quality: 2
+
+Briefly justify each category score in one line, then end your response with exactly:
+FINAL_SCORE: XX.XX
